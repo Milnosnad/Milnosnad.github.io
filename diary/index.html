@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Diary of a CEO — Danson Lim</title>
+  <meta name="description" content="The Diary of a CEO (Constantly Evaluating Options) — opinions, reflections and half-formed arguments by Danson Lim.">
+  <meta property="og:title" content="The Diary of a CEO — Danson Lim">
+  <meta property="og:description" content="Constantly Evaluating Options. Opinions I currently hold and would happily be argued out of.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0c10'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' fill='%23c2622d' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav nav-solid" id="siteNav" aria-label="Main">
+    <a class="nav-mark" href="../index.html">DL</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+    <section class="diary-hero">
+      <div class="section-inner">
+        <h1 class="diary-title">The Diary of a CEO <span class="diary-bracket">(Chief Excuse Officer)</span></h1>
+        <p class="diary-expand">Writing, opinions, and the occasional rant.</p>
+        <p class="diary-intro">With apologies to Steven Bartlett. No company, no title, no corner office — just someone who reads too much, decides too slowly, and writes things down to think more clearly. These are opinions I currently hold and would happily be argued out of.</p>
+      </div>
+    </section>
+
+    <section class="diary-list-section">
+      <div class="section-inner">
+        <ul class="entry-list">
+          <li class="entry reveal">
+            <a href="expedition-33-and-metaphor.html">
+              <p class="entry-meta"><span class="tag">Games</span><span>June 2026</span></p>
+              <p class="entry-title">Fantasy isn't the escape — it's the rebellion</p>
+              <p class="entry-dek">Two RPGs — Expedition 33 and Metaphor — that turn out to be arguments against escapism, made in the language of fantasy.</p>
+            </a>
+          </li>
+          <li class="entry reveal">
+            <a href="we-keep-promoting-hedgehogs.html">
+              <p class="entry-meta"><span class="tag">Work</span><span>June 2026</span></p>
+              <p class="entry-title">We keep promoting hedgehogs</p>
+              <p class="entry-dek">"The fox knows many things, but the hedgehog knows one big thing." Guess which one is easier to put on a slide — and promote.</p>
+            </a>
+          </li>
+          <li class="entry reveal">
+            <a href="lost-40kg-by-being-boring.html">
+              <p class="entry-meta"><span class="tag">Living</span><span>June 2026</span></p>
+              <p class="entry-title">I lost 40kg by being boring</p>
+              <p class="entry-dek">No turning point, no montage — just the same dull choices made enough times that the body quietly catches up.</p>
+            </a>
+          </li>
+          <li class="entry reveal">
+            <a href="stoicism-religion-for-immature-men.html">
+              <p class="entry-meta"><span class="tag">Books</span><span>June 2026</span></p>
+              <p class="entry-title">Stoicism has become a religion for immature men</p>
+              <p class="entry-dek">The bros took the cover and skipped the book. I still read it anyway — here's why both things are true.</p>
+            </a>
+          </li>
+          <li class="entry reveal">
+            <a href="ai-price-of-thinking.html">
+              <p class="entry-meta"><span class="tag">AI</span><span>May 2026</span></p>
+              <p class="entry-title">AI changes the price of thinking, not the point of it</p>
+              <p class="entry-dek">Not salvation, not extinction — a collapse in the price of competent output, and where that leaves the rest of us.</p>
+            </a>
+          </li>
+          <li class="entry reveal">
+            <a href="the-synthesisers-wager.html">
+              <p class="entry-meta"><span class="tag">Work</span><span>May 2026</span></p>
+              <p class="entry-title">The synthesiser's wager</p>
+              <p class="entry-dek">Breadth with no depth is just being shallow about more things. It's still the bet I'm placing — out loud.</p>
+            </a>
+          </li>
+          <li class="entry reveal">
+            <a href="start-before-the-money.html">
+              <p class="entry-meta"><span class="tag">Capital</span><span>April 2026</span></p>
+              <p class="entry-title">Start before the money is worth managing</p>
+              <p class="entry-dek">Capital is the least important input at the start. The discipline is the asset; the money is a trailing indicator.</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Danson Lim · <a href="../index.html">milnosnad</a></footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById('siteNav');
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      links.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A' && nav.classList.contains('is-open')) {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      });
+      var revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+          });
+        }, { threshold: 0.12 });
+        revealEls.forEach(function (el) { observer.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+    })();
+  </script>
+</body>
+</html>

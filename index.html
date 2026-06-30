@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Danson Lim — Capital, code, and the people in between.</title>
-  <meta name="description" content="Danson Lim — capital, code, and the people in between. A personal page about how I think, what I value, and what I'm interested in.">
+  <meta name="description" content="Danson Lim — capital, code, and the people in between. A personal page, and a diary of things I'm thinking about.">
   <meta property="og:title" content="Danson Lim">
   <meta property="og:description" content="Capital, code, and the people in between.">
   <meta property="og:image" content="https://milnosnad.github.io/assets/img/profile-img.jpg">
@@ -14,459 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
-
-  <style>
-    /* ============ Tokens ============ */
-    :root {
-      --bg: #0b0c10;                /* near-black, ink undertone */
-      --bg-raised: #14161d;         /* one step lighter — domains */
-      --paper: #f4efe5;             /* warm ivory — thinking */
-      --ink: #16140f;               /* near-black text on paper */
-      --ink-soft: #3d3a33;
-      --text: #ece7db;              /* warm ivory text */
-      --text-muted: #a39d90;
-      --accent: #c2622d;            /* burnt orange */
-      --accent-bright: #d98a4f;     /* lighter tint for small text on dark */
-      --accent-ghost: rgba(194, 98, 45, 0.16);
-      --hairline: rgba(236, 231, 219, 0.12);
-      --serif: "Playfair Display", Georgia, serif;
-      --sans: "Inter", -apple-system, "Segoe UI", sans-serif;
-      --measure: 65ch;
-      --space-section: clamp(6rem, 12vw, 10rem);
-      --pad-x: clamp(1.25rem, 5vw, 3rem);
-    }
-
-    /* ============ Reset & base ============ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 5rem;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-weight: 300;
-      font-size: 1.0625rem;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    img { display: block; max-width: 100%; }
-
-    a { color: var(--accent-bright); text-decoration: none; }
-    a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
-
-    :focus-visible {
-      outline: 2px solid var(--accent-bright);
-      outline-offset: 3px;
-      border-radius: 1px;
-    }
-
-    ::selection { background: var(--accent); color: var(--bg); }
-
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: 0;
-      background: var(--accent);
-      color: var(--bg);
-      padding: 0.6rem 1rem;
-      z-index: 200;
-    }
-    .skip-link:focus { left: 0; }
-
-    /* ============ Scroll reveal ============ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(26px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.is-visible { opacity: 1; transform: none; }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-      *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
-    }
-
-    /* ============ Nav ============ */
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.1rem var(--pad-x);
-      transition: box-shadow 0.35s ease;
-    }
-    /* Background lives on a pseudo-element: backdrop-filter on the nav itself
-       would make it the containing block for the fixed mobile overlay. */
-    .site-nav::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: rgba(11, 12, 16, 0.86);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      opacity: 0;
-      transition: opacity 0.35s ease;
-    }
-    .site-nav.is-scrolled { box-shadow: 0 1px 0 var(--hairline); }
-    .site-nav.is-scrolled::before { opacity: 1; }
-
-    .nav-mark {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      color: var(--text);
-      letter-spacing: 0.02em;
-    }
-    .nav-mark:hover { text-decoration: none; color: var(--accent-bright); }
-
-    .nav-links {
-      display: flex;
-      gap: 2.2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-    .nav-links a:hover { color: var(--text); text-decoration: none; }
-
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-      z-index: 110;
-    }
-    .nav-toggle span {
-      display: block;
-      width: 24px;
-      height: 1.5px;
-      background: var(--text);
-      margin: 6px 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    @media (max-width: 720px) {
-      .nav-toggle { display: block; }
-      .nav-links {
-        position: fixed;
-        inset: 0;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2.4rem;
-        background: rgba(11, 12, 16, 0.97);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
-      .nav-links a { font-size: 1rem; }
-      .site-nav.is-open .nav-links { opacity: 1; visibility: visible; }
-      .site-nav.is-open .nav-toggle span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
-      .site-nav.is-open .nav-toggle span:nth-child(2) { opacity: 0; }
-      .site-nav.is-open .nav-toggle span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
-    }
-
-    /* ============ Shared section bones ============ */
-    section { padding: var(--space-section) var(--pad-x); }
-
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent-bright);
-      margin-bottom: 2.8rem;
-    }
-
-    /* ============ Hero ============ */
-    .hero {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: radial-gradient(ellipse 90% 65% at 50% 38%, #11141d 0%, var(--bg) 70%);
-      padding-top: 8rem;
-      padding-bottom: 6rem;
-    }
-
-    .hero h1 {
-      font-family: var(--serif);
-      font-weight: 500;
-      font-size: clamp(3.2rem, 11vw, 7.25rem);
-      line-height: 1.05;
-      letter-spacing: 0.01em;
-      color: var(--text);
-    }
-
-    .hero-rule {
-      width: 76px;
-      height: 2px;
-      background: var(--accent);
-      border: none;
-      margin: 2.2rem auto;
-    }
-
-    .hero-tagline {
-      font-size: clamp(1rem, 2.4vw, 1.3rem);
-      font-weight: 400;
-      letter-spacing: 0.07em;
-      color: var(--text);
-      margin-bottom: 2.6rem;
-    }
-
-    .hero-intro {
-      max-width: 36em;
-      color: var(--text-muted);
-      margin-bottom: 3.2rem;
-    }
-
-    .cta {
-      display: inline-block;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text);
-      border: 1px solid rgba(236, 231, 219, 0.35);
-      padding: 0.95rem 2.4rem;
-      transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
-    }
-    .cta:hover {
-      text-decoration: none;
-      border-color: var(--accent);
-      color: var(--accent-bright);
-    }
-
-    /* ============ About ============ */
-    .about { padding-left: 0; padding-right: 0; }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 42%) minmax(0, 58%);
-      align-items: center;
-      gap: clamp(2.5rem, 6vw, 5.5rem);
-      max-width: 1240px;
-      margin: 0 auto;
-      padding-right: var(--pad-x);
-    }
-
-    .about-photo {
-      position: relative;
-      align-self: stretch;
-      min-height: 420px;
-    }
-    .about-photo img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(1) contrast(1.04) brightness(0.92);
-    }
-    .about-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(165deg, rgba(17, 20, 29, 0.45) 0%, rgba(11, 12, 16, 0.15) 50%, rgba(194, 98, 45, 0.14) 100%);
-      mix-blend-mode: multiply;
-      pointer-events: none;
-    }
-
-    .about-text { padding-left: var(--pad-x); padding-right: 0; }
-    .about-text .section-label { margin-bottom: 2rem; }
-
-    .about-open {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: clamp(1.35rem, 2.6vw, 1.7rem);
-      line-height: 1.5;
-      color: var(--text);
-      margin-bottom: 1.6rem;
-    }
-
-    .about-text p:not(.about-open):not(.section-label) { color: var(--text-muted); margin-bottom: 1.4rem; }
-    .about-text p:last-child { margin-bottom: 0; }
-    .about-text strong { font-weight: 500; color: var(--text); }
-
-    @media (max-width: 860px) {
-      .about-grid { grid-template-columns: 1fr; padding-right: 0; }
-      .about-photo { min-height: 0; height: min(72vw, 480px); }
-      .about-photo img { position: absolute; }
-      .about-text { padding: 0 var(--pad-x); }
-    }
-
-    /* ============ Domains ============ */
-    .domains { background: var(--bg-raised); }
-
-    .domains-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(2.6rem, 5vw, 4rem) clamp(2rem, 4vw, 3.5rem);
-    }
-
-    .domain { position: relative; padding-top: 2.4rem; }
-
-    .domain-num {
-      position: absolute;
-      top: -0.6rem;
-      left: -0.4rem;
-      font-family: var(--serif);
-      font-size: 4.4rem;
-      font-weight: 500;
-      line-height: 1;
-      color: var(--accent-ghost);
-      user-select: none;
-    }
-
-    .domain h3 {
-      position: relative;
-      font-family: var(--sans);
-      font-size: 1.02rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--text);
-      margin-bottom: 0.9rem;
-    }
-
-    .domain p { font-size: 0.98rem; color: var(--text-muted); }
-
-    @media (max-width: 980px) { .domains-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px) { .domains-grid { grid-template-columns: 1fr; } }
-
-    /* ============ Thinking — the paper section ============ */
-    .thinking {
-      background: var(--paper);
-      color: var(--ink);
-    }
-    .thinking .section-label { color: var(--accent); }
-
-    .thinking-inner { max-width: var(--measure); margin: 0 auto; }
-
-    .thinking article + article { margin-top: clamp(4rem, 8vw, 6rem); }
-
-    .thinking article::before {
-      content: "";
-      display: block;
-      width: 56px;
-      height: 2px;
-      background: var(--accent);
-      margin-bottom: 1.6rem;
-    }
-
-    .thinking h3 {
-      font-family: var(--serif);
-      font-weight: 600;
-      font-size: clamp(1.55rem, 3.4vw, 2.1rem);
-      line-height: 1.25;
-      margin-bottom: 1.3rem;
-    }
-
-    .thinking p {
-      color: var(--ink-soft);
-      font-size: 1.04rem;
-      line-height: 1.85;
-    }
-
-    /* ============ Values — typographic poster ============ */
-    .values-list { list-style: none; }
-
-    .value { padding: clamp(2.8rem, 6vw, 4.2rem) 0; }
-    .value + .value { border-top: 1px solid var(--hairline); }
-
-    .value-numeral {
-      display: block;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 0.95rem;
-      color: var(--accent-bright);
-      margin-bottom: 0.9rem;
-    }
-
-    .value h3 {
-      font-family: var(--serif);
-      font-weight: 500;
-      font-size: clamp(2.5rem, 7vw, 4.4rem);
-      line-height: 1.08;
-      color: var(--text);
-    }
-
-    .value-sub {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent-bright);
-      margin: 0.9rem 0 1.1rem;
-    }
-
-    .value p { max-width: 54ch; color: var(--text-muted); }
-
-    /* ============ Contact ============ */
-    .contact {
-      background: radial-gradient(ellipse 90% 70% at 50% 60%, #11141d 0%, var(--bg) 72%);
-      text-align: center;
-      padding-top: clamp(7rem, 14vw, 12rem);
-      padding-bottom: clamp(5rem, 10vw, 8rem);
-    }
-
-    .contact-invite {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: clamp(1.5rem, 3.6vw, 2.35rem);
-      line-height: 1.4;
-      max-width: 24em;
-      margin: 0 auto 2.4rem;
-      color: var(--text);
-    }
-
-    .contact-rule {
-      width: 76px;
-      height: 2px;
-      background: var(--accent);
-      border: none;
-      margin: 0 auto 2.6rem;
-    }
-
-    .contact-details {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.8rem 2.6rem;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-    .contact-details a { color: var(--text); }
-    .contact-details a:hover { color: var(--accent-bright); }
-
-    /* ============ Footer ============ */
-    footer {
-      padding: 2rem var(--pad-x) 2.6rem;
-      text-align: center;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      color: rgba(163, 157, 144, 0.55);
-    }
-  </style>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 
 <body>
@@ -479,9 +27,8 @@
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
-      <li><a href="#what-i-do">What I Do</a></li>
-      <li><a href="#thinking">Thinking</a></li>
-      <li><a href="#values">Values</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="diary/index.html">The Diary</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -492,127 +39,92 @@
       <h1>Danson Lim</h1>
       <hr class="hero-rule">
       <p class="hero-tagline">Capital, code, and the people in between.</p>
-      <p class="hero-intro">I work where money meets machines — and where both meet people. My background runs across Computer Science, Finance, and AI, but the through-line is simpler: I want to know how things work, what they're worth, and who they matter to. Everything else on this page is that one instinct, applied.</p>
-      <a class="cta" href="#contact">Get in touch</a>
+      <p class="hero-intro">My background runs across computer science, finance, and AI — none of it to specialist depth, all of it to the point where the connections start to show. Mostly I want to understand how things work, what they're worth, and who they're for. This page is the short version; the diary is the long one.</p>
+      <a class="cta" href="diary/index.html">Read the diary</a>
     </section>
 
     <!-- ============ ABOUT ============ -->
     <section class="about" id="about">
-      <div class="about-grid">
-        <figure class="about-photo reveal">
-          <img src="assets/img/profile-img.jpg" alt="Danson Lim, standing beneath a tree in a garden" loading="lazy">
-        </figure>
-        <div class="about-text reveal">
-          <p class="section-label">About</p>
-          <p class="about-open">Hi, I'm Danson — the result of mixing tech, capital, and a slightly irrational fear of irrelevance.</p>
-          <p>On paper, that's a background across Computer Science, Finance, and AI. In practice, it's one operating mode: take something complicated, find the system underneath it, and work out where the value is hiding.</p>
-          <p>I think in evidence and argue with myself for sport. I've always believed that numbers tell one story, but people tell another — and the interesting work happens where the two versions disagree. I'm usually the one in the room playing devil's advocate, not to be difficult, but because a position that can't survive pushback doesn't deserve to be held. The flip side is a streak of whimsy I've stopped apologising for: I see where things should go long before I've worked out the steps, and I've learned to treat that as a feature that needs supervision.</p>
-          <p>What I'm after is range. Markets, product design, systems, the strange science of making a human body work better — I'd rather understand ten things well enough to connect them than one thing so well I can't talk about anything else. My world is deliberately international; the best ideas I've encountered arrived through people, usually over a table, rarely on schedule.</p>
-          <p>I'm always up for good ideas, good people, or questionable plans that just might work. If you're carrying any of the three, this page ends with my email.</p>
+      <div class="section-inner reveal">
+        <p class="section-label">About</p>
+        <p class="about-open">Hi, I'm Danson — the result of mixing tech, capital, and a slightly irrational fear of irrelevance.</p>
+        <p>On paper, that's a background across computer science, finance, and AI. None of it deep enough to call myself a specialist — I know where that gap is. What I do have is the habit of taking something complicated, looking for the system underneath it, and asking where the value actually sits.</p>
+        <p>I lean on evidence over instinct, though I've learned my instincts tend to run ahead of my reasoning — I'll see where something should go long before I can show my work, which is useful and dangerous in roughly equal measure. I like being argued with. I've always thought numbers tell one story and people tell another, and the interesting part is usually where the two disagree.</p>
+        <p>What I'm after is range. Markets, product design, systems, the odd science of getting a human body to work better — I'd rather understand ten things well enough to connect them than one thing so well I can't talk about anything else. My world is deliberately international; most of the best ideas I've run into arrived through people, over a table, rarely on schedule.</p>
+        <p>I'm always up for good ideas, good people, or questionable plans that just might work. If you're carrying any of the three, this page ends with my email.</p>
+      </div>
+    </section>
+
+    <!-- ============ WHAT I WORK ON ============ -->
+    <section class="work" id="work">
+      <div class="section-inner reveal">
+        <p class="section-label">What I work on</p>
+        <p class="work-lead">Less a job description than the handful of things I actually spend time on — and, in a couple of cases, am still trying to get good at.</p>
+        <div class="work-grid">
+          <div class="work-item">
+            <h3><span class="num">01</span>Investing &amp; capital allocation</h3>
+            <p>Running a small portfolio with more process than its size strictly warrants — written theses, deliberate sizing, honest post-mortems. Mostly long-term and institutional in approach, with smaller sleeves I treat frankly as tuition.</p>
+          </div>
+          <div class="work-item">
+            <h3><span class="num">02</span>Financial analysis &amp; tooling</h3>
+            <p>Building tools that put AI to work on real financial analysis — turning filings, reports and messy data into something a decision-maker can actually use. It's where the finance and the technical side finally do something together.</p>
+          </div>
+          <div class="work-item">
+            <h3><span class="num">03</span>Systems &amp; research</h3>
+            <p>The connective work: digging into a problem until the picture holds up, finding the one variable quietly driving it, then making the case plainly enough to act on.</p>
+          </div>
+          <div class="work-item">
+            <h3><span class="num">04</span>Building &amp; ownership</h3>
+            <p>Slowly working toward owning things I understand rather than just renting my time to them. Early, imperfect, and the part I'm most deliberately bad-then-better at.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ WHAT I DO ============ -->
-    <section class="domains" id="what-i-do">
+    <!-- ============ WRITING (DIARY TEASER) ============ -->
+    <section class="writing" id="writing">
       <div class="section-inner">
-        <p class="section-label reveal">What I Do</p>
-        <div class="domains-grid">
-          <article class="domain reveal">
-            <span class="domain-num" aria-hidden="true">01</span>
-            <h3>Investments, Capital &amp; Alternatives</h3>
-            <p>I read markets the way other people read novels — for plot, character, and the parts everyone skims. The goal isn't prediction; it's to understand how value moves through the world and where it quietly compounds. The less obvious the vehicle, the better the question.</p>
-          </article>
-          <article class="domain reveal">
-            <span class="domain-num" aria-hidden="true">02</span>
-            <h3>Technology &amp; Digital Strategy</h3>
-            <p>I come from code, but what holds my attention is what technology does to decisions. Design isn't decoration; it's clarity — done right, it turns data into understanding and friction into flow. Most digital strategy fails at exactly that point, which is why it's worth thinking hard about.</p>
-          </article>
-          <article class="domain reveal">
-            <span class="domain-num" aria-hidden="true">03</span>
-            <h3>Systems &amp; Product Thinking</h3>
-            <p>Everything's a system — portfolios, teams, even bad habits. Once you see the feedback loops you can't unsee them, and you stop blaming outcomes on effort or luck. I like finding the one variable that's quietly running the whole machine.</p>
-          </article>
-          <article class="domain reveal">
-            <span class="domain-num" aria-hidden="true">04</span>
-            <h3>Research &amp; Narrative</h3>
-            <p>Research is the data; narrative is the edge. Two people can hold identical facts and reach opposite conclusions — the difference is the story they put the facts inside. I work both halves: dig until the picture is honest, then find the words that make it land.</p>
-          </article>
-          <article class="domain reveal">
-            <span class="domain-num" aria-hidden="true">05</span>
-            <h3>Ventures, Strategy &amp; Ownership</h3>
-            <p>I'm drawn to owning things — not collecting them, but the kind of ownership where decisions, consequences, and upside all live at the same address. I identify with people who build and acquire over people who pitch and push. The long game is equity in things I understand, run on principles I actually hold.</p>
-          </article>
-          <article class="domain reveal">
-            <span class="domain-num" aria-hidden="true">06</span>
-            <h3>Human Optimisation &amp; Design</h3>
-            <p>The first system I ever properly re-engineered was myself. Sleep, training, food, attention — all of it measurable, most of it fixable, none of it requiring a longevity compound in Venice Beach. Think Bryan Johnson, on a much smaller budget and with a noticeably better social life.</p>
-          </article>
+        <div class="writing-head reveal">
+          <p class="section-label">The Diary of a CEO <span class="label-bracket">(Chief Excuse Officer)</span></p>
+          <p class="writing-gloss">Writing, opinions, and the occasional rant.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ THINKING ============ -->
-    <section class="thinking" id="thinking">
-      <div class="thinking-inner">
-        <p class="section-label reveal">Thinking</p>
-        <article class="reveal">
-          <h3>Start before the money is worth managing</h3>
-          <p>The standard advice is to wait — earn first, invest seriously later, once the sums justify the effort. I think that's exactly backwards. Capital is the least important input at the start. The things that actually determine long-run returns — the mental models, the process discipline, the ability to be wrong without being wrecked — take years to build and can't be bought later at any price. Start at 27 with modest capital and every mistake is tuition at a discount. The same lesson at 45, with real money on the table, costs a multiple of your net worth and arrives precisely when you're too senior to admit you needed it. So I run small capital with institutional seriousness: written theses, deliberate sizing, a post-mortem on every decision including the good ones. Not because the dollars demand it — because the habits do. The money is a trailing indicator. The discipline is the asset.</p>
-        </article>
-        <article class="reveal">
-          <h3>The synthesiser's wager</h3>
-          <p>Specialisation is safe, respectable, and increasingly automatable. The deeper your expertise, the more it resembles a well-defined output — and well-defined outputs are precisely what machines are learning to produce. The generalist takes a different bet: that the valuable problems live between fields, in the gaps no department owns. Someone who can read a balance sheet, reason about a system's architecture, and tell which of the two is lying sees things the specialists on either side will miss. I'm a synthesiser by temperament — broad, conceptual, more interested in how things connect than in how any one thing works in isolation. For most of history that was a polite word for unemployable. The repricing has already started. As AI floods the world with cheap specialist output, the scarce skill becomes knowing which outputs matter, what they mean together, and what to ask for next. Breadth used to be a luxury. It's becoming the edge.</p>
-        </article>
-        <article class="reveal">
-          <h3>AI changes the price of thinking, not the point of it</h3>
-          <p>Most AI takes come in two flavours: salvation or extinction. Both miss what's actually happening, which is something more boring and more important — a collapse in the price of competent output. Analysis, code, research summaries, first drafts: all of it is becoming cheap, fast, and roughly fine. For anyone working where finance meets technology, that doesn't eliminate the work. It re-sorts it. When competent output costs nothing, the premium moves to everything around it: knowing what's worth analysing in the first place, recognising when the polished answer is subtly wrong, and persuading actual humans to act on what's right. Those were always the hard parts; AI just stripped away the billable hours that used to hide them. What it changes for me is concrete — the routine hours are spoken for now, so the remaining ones go to judgment, relationships, and taste. Three things that never had a unit price, and still don't.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============ VALUES ============ -->
-    <section class="values" id="values">
-      <div class="section-inner">
-        <p class="section-label reveal">Values</p>
-        <ol class="values-list">
-          <li class="value reveal">
-            <span class="value-numeral" aria-hidden="true">I</span>
-            <h3>Compounding</h3>
-            <span class="value-sub">In work &amp; life</span>
-            <p>The best ideas, relationships, and habits all compound quietly in the background. My job is to start them early, feed them often, and have the discipline not to interrupt.</p>
+        <ul class="entry-list">
+          <li class="entry reveal">
+            <a href="diary/expedition-33-and-metaphor.html">
+              <p class="entry-meta"><span class="tag">Games</span><span>June 2026</span></p>
+              <p class="entry-title">Fantasy isn't the escape — it's the rebellion</p>
+              <p class="entry-dek">Two RPGs — Expedition 33 and Metaphor — that turn out to be arguments against escapism, made in the language of fantasy.</p>
+            </a>
           </li>
-          <li class="value reveal">
-            <span class="value-numeral" aria-hidden="true">II</span>
-            <h3>Connection</h3>
-            <span class="value-sub">The world and you</span>
-            <p>The most valuable things I hold weren't bought; they were introduced. I keep my world wide on purpose — countries, generations, ways of thinking — because the best ideas arrive through people, not feeds.</p>
+          <li class="entry reveal">
+            <a href="diary/we-keep-promoting-hedgehogs.html">
+              <p class="entry-meta"><span class="tag">Work</span><span>June 2026</span></p>
+              <p class="entry-title">We keep promoting hedgehogs</p>
+              <p class="entry-dek">"The fox knows many things, but the hedgehog knows one big thing." Guess which one is easier to put on a slide — and promote.</p>
+            </a>
           </li>
-          <li class="value reveal">
-            <span class="value-numeral" aria-hidden="true">III</span>
-            <h3>Storytelling</h3>
-            <span class="value-sub">We are all made from stories</span>
-            <p>Numbers persuade analysts; stories persuade everyone else. Every market, company, and person runs on a narrative — the craft is telling true ones well.</p>
+          <li class="entry reveal">
+            <a href="diary/lost-40kg-by-being-boring.html">
+              <p class="entry-meta"><span class="tag">Living</span><span>June 2026</span></p>
+              <p class="entry-title">I lost 40kg by being boring</p>
+              <p class="entry-dek">No turning point, no montage — just the same dull choices made enough times that the body quietly catches up.</p>
+            </a>
           </li>
-          <li class="value reveal">
-            <span class="value-numeral" aria-hidden="true">IV</span>
-            <h3>Growth</h3>
-            <span class="value-sub">Always learning</span>
-            <p>Curiosity is something that scales better than ambition — ambition needs a finish line, curiosity just needs a new morning. I read widely, ask the naive question on purpose, and change my mind in public when the evidence says so.</p>
+          <li class="entry reveal">
+            <a href="diary/stoicism-religion-for-immature-men.html">
+              <p class="entry-meta"><span class="tag">Books</span><span>June 2026</span></p>
+              <p class="entry-title">Stoicism has become a religion for immature men</p>
+              <p class="entry-dek">The bros took the cover and skipped the book. I still read it anyway — here's why both things are true.</p>
+            </a>
           </li>
-          <li class="value reveal">
-            <span class="value-numeral" aria-hidden="true">V</span>
-            <h3>Asking</h3>
-            <span class="value-sub">Receiving is automatic</span>
-            <p>Most doors aren't locked; most people just never pull the handle. I ask — for advice, for introductions, for the honest version — because the worst case is a no, and the no was already the default.</p>
-          </li>
-        </ol>
+        </ul>
+        <p class="reveal" style="margin-top:2.4rem;"><a class="writing-all" href="diary/index.html">All entries →</a></p>
       </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
     <section class="contact" id="contact">
-      <p class="contact-invite reveal">If anything on this page reads like the middle of a conversation you're already having — it probably is. Let's continue it.</p>
+      <p class="contact-invite reveal">If anything here reads like the middle of a conversation you're already having, it probably is. I'm easy to reach.</p>
       <hr class="contact-rule reveal">
       <ul class="contact-details reveal">
         <li><a href="https://www.linkedin.com/in/milnosnad" rel="noopener">LinkedIn — in/milnosnad</a></li>
@@ -630,14 +142,10 @@
       var toggle = document.getElementById('navToggle');
       var links = document.getElementById('navLinks');
 
-      // Nav background once the hero is left behind
-      function onScroll() {
-        nav.classList.toggle('is-scrolled', window.scrollY > 40);
-      }
+      function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 40); }
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      // Mobile nav toggle
       toggle.addEventListener('click', function () {
         var open = nav.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -651,16 +159,11 @@
         }
       });
 
-      // Scroll reveal — one at a time as each element enters
       var revealEls = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window &&
-          !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         var observer = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
+            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
           });
         }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
         revealEls.forEach(function (el) { observer.observe(el); });
